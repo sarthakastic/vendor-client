@@ -93,9 +93,9 @@ const VendorUI = ({
             <div></div>
             <div
               onClick={() => setShowModal(true)}
-              className="relative left-8 hover:cursor-pointer px-2 bg-black w-fit rounded-full p-1 text-gray-400"
+              className="relative md:left-8 hover:cursor-pointer md:px-2 bg-black w-fit rounded-full  text-gray-400"
             >
-              Create New Vendor
+              <span className="text-[10px]  ">Create New </span>
             </div>
           </div>
         </div>
