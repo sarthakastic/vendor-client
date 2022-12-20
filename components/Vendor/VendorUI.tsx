@@ -36,12 +36,15 @@ type Props = {
   setShowDetailsModel: Dispatch<SetStateAction<boolean>>;
   loader: boolean;
   setLoader: Dispatch<SetStateAction<boolean>>;
+  success: boolean;
+  failure: boolean;
   previous: () => any;
   next: () => any;
   newVendor: (e: any) => any;
   editVendor: (id: any) => any;
   deleteDetails: (id: any) => any;
   getDetails: (id: any) => any;
+  notify: () => any;
 };
 
 const VendorUI = ({
@@ -82,6 +85,9 @@ const VendorUI = ({
   getDetails,
   page,
   setPage,
+  notify,
+  success,
+  failure,
 }: Props) => {
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -175,6 +181,22 @@ const VendorUI = ({
           >
             <Icon icon="material-symbols:keyboard-arrow-right" />
           </div>
+        </div>
+        <div
+          className={`absolute  top-10 bg-green-400 p-2 rounded-xl font-bold ${
+            success ? "flex" : "hidden"
+          } `}
+        >
+          {" "}
+          Success
+        </div>
+        <div
+          className={`absolute  top-10 bg-red-400 p-2 rounded-xl font-bold ${
+            failure ? "flex" : "hidden"
+          } `}
+        >
+          {" "}
+          Failed Try again
         </div>
       </div>
       <VendorDelete

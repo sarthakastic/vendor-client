@@ -20,6 +20,8 @@ const Vendor = (props: Props) => {
   const [showDeleteModel, setShowDeleteModel] = useState(false);
   const [showDetailsModel, setShowDetailsModel] = useState(false);
   const [loader, setLoader] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState(false);
   const getVendor = () => {
     axios
       .get(
@@ -52,6 +54,13 @@ const Vendor = (props: Props) => {
     } else setPage(page + 1);
   };
 
+  const notify = () => {
+    setTimeout(() => {
+      setSuccess(false);
+      setFailure(false);
+    }, 5000);
+  };
+
   const clearForm = () => {
     setAccountNo(0);
     setAddress1("");
@@ -77,12 +86,16 @@ const Vendor = (props: Props) => {
         zipCode: zipCode,
       })
       .then(function (response) {
+        setSuccess(true);
+        notify();
         getVendor();
         clearForm();
         console.log(response);
       })
       .catch(function (response) {
         console.log(response);
+        setFailure(true);
+        notify();
       });
   };
 
@@ -101,8 +114,15 @@ const Vendor = (props: Props) => {
       .then((res) => {
         getVendor();
         clearForm(), console.log(res);
+        setId("");
+        setSuccess(true);
+        notify();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setFailure(true);
+        notify();
+      });
   };
 
   const getDetails = (id: any) => {
@@ -135,10 +155,16 @@ const Vendor = (props: Props) => {
     axios
       .delete(`https://vendor-server-production-9234.up.railway.app/${id}`)
       .then((res) => {
+        setSuccess(true);
+        notify();
         getVendor();
         console.log("Deleted Successfully", res.status);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setFailure(true);
+        notify();
+      });
   };
   console.log("data", data);
 
@@ -182,6 +208,9 @@ const Vendor = (props: Props) => {
         details={details}
         loader={loader}
         setLoader={setLoader}
+        notify={notify}
+        success={success}
+        failure={failure}
       />
     </>
   );

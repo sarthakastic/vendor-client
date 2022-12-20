@@ -66,7 +66,9 @@ const VendorModel = ({
           action=""
           className="w-full h-full flex flex-col p-4 items-center bg-white rounded-md gap-y-3"
         >
-          <div>{id === "" ? "Create Vendor" : "Edit vender details"}</div>
+          <div>
+            {id === "" || undefined ? "Create Vendor" : "Edit vender details"}
+          </div>
           <input
             className="border w-5/6 h-10 placeholder:p-2 rounded-md"
             type="text"

@@ -4,6 +4,7 @@ type Props = {
   id: string;
   showDeleteModel: boolean;
   setShowDeleteModel: Dispatch<SetStateAction<boolean>>;
+
   deleteDetails: (id: any) => any;
 };
 
