@@ -19,6 +19,7 @@ const Vendor = (props: Props) => {
   const [page, setPage] = useState<number>(1);
   const [showDeleteModel, setShowDeleteModel] = useState(false);
   const [showDetailsModel, setShowDetailsModel] = useState(false);
+  const [loader, setLoader] = useState(true);
   const getVendor = () => {
     axios
       .get(
@@ -33,6 +34,7 @@ const Vendor = (props: Props) => {
         setData(res.data);
         console.log(page);
         console.log(res.data.length);
+        setLoader(false);
       })
       .catch((e) => console.log(e));
   };
@@ -178,6 +180,8 @@ const Vendor = (props: Props) => {
         showDetailsModel={showDetailsModel}
         setShowDetailsModel={setShowDetailsModel}
         details={details}
+        loader={loader}
+        setLoader={setLoader}
       />
     </>
   );

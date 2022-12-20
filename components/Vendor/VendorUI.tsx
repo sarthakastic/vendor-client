@@ -34,6 +34,8 @@ type Props = {
   setShowDeleteModel: Dispatch<SetStateAction<boolean>>;
   showDetailsModel: boolean;
   setShowDetailsModel: Dispatch<SetStateAction<boolean>>;
+  loader: boolean;
+  setLoader: Dispatch<SetStateAction<boolean>>;
   previous: () => any;
   next: () => any;
   newVendor: (e: any) => any;
@@ -71,6 +73,8 @@ const VendorUI = ({
   newVendor,
   deleteDetails,
   editVendor,
+  loader,
+  setLoader,
   showDeleteModel,
   setShowDeleteModel,
   showDetailsModel,
@@ -82,6 +86,13 @@ const VendorUI = ({
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <div className="w-11/12 h-5/6 border-2">
+        <div
+          className={` ${
+            loader ? "flex" : "hidden"
+          } justify-center py-5 text-xl `}
+        >
+          Loading...
+        </div>
         <div className="w-full h-16 flex justify-between items-center px-2 bg-gray-400 text-xl font-semibold">
           <div className="flex justify-between items-center text-center w-5/6">
             <div className="text-center w-full">Name</div>
